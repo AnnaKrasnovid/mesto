@@ -1,0 +1,10 @@
+.element__like_active {
+  background: url(../../../../image/likeBlack.svg);
+  background-size: 22px 19px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 22px;
+  height: 19px;
+  margin-left: 20px;
+  border: none;
+}
