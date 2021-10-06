@@ -32,7 +32,6 @@ function submitForm(event) {
     closePopup();
 }
 
-editbutton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 editbutton.addEventListener('click', inputNameForm);
 form.addEventListener('submit', submitForm);

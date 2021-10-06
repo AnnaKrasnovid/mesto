@@ -10,12 +10,12 @@
 <body class="root">
   <div class="page">
     <!--Блок header-->
-    <header class="header side-margins">
+    <header class="header">
       <img class="logo" src="./image/LogoVector.svg" alt="Логотип">
     </header>
     <main class="content">
       <!--Блок profile-->
-      <section class="profile side-margins">
+      <section class="profile">
        <img class="profile__avatar" src="./image/image.jpg" alt="Фотография владельца профиля">
         <div class="profile__info">
           <div class="profile__name-container">
@@ -27,7 +27,7 @@
         <button class="profile__add-button hover-button" type="button"></button>
       </section>
       <!--Блок elements-->
-      <section class="side-margins" aria-label="Публикация">
+      <section aria-label="Публикация">
         <ul class="elements">
           <li class="element">
             <img class="element__photo" src="./image/Алтай.jpg" alt="Алтай">
@@ -75,7 +75,7 @@
       </section>
     </main>
     <!--Блок footer-->
-    <footer class="footer side-margins">
+    <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <!--popup-->
@@ -83,7 +83,7 @@
       <div class="popup__content">
         <button class="popup__close hover-button" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form">
+        <form class="popup__form" name="form-popap">
           <input class="popup__input popup__input_info_name" type="text" name="name" placeholder="Имя пользователя">
           <input class="popup__input popup__input_info_about" type="text" name="about" placeholder="О себе">
           <button class="popup__button" type="submit">Сохранить</button>

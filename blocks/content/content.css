@@ -1,40 +1,41 @@
-.side-margins {
+.content {
   width: calc(100% - 200px*2);
   margin: auto;
 }
-
+  
 @media screen and (max-width: 1279px) {
-  .side-margins {
+  .content {
     width: calc(100% - 150px*2);
   }
 }
-
+  
 @media screen and (max-width: 1180px) {
-  .side-margins {
+  .content {
     width: calc(100% - 100px*2);
   }
 }
-
+  
 @media screen and (max-width: 1090px) {
-  .side-margins {
+  .content {
     width: calc(100% - 50px*2);
-  }
+ }
 }
-
+  
 @media screen and (max-width: 1000px) {
-  .side-margins {
+  .content {
     width: calc(100% - 150px*2);
   }
 }
-
+  
 @media screen and (max-width: 890px) {
-  .side-margins {
+  .content {
     width: calc(100% - 80px*2);
   }
 }
-
+  
 @media screen and (max-width: 767px) {
-  .side-margins {
+  .content {
     width: calc(100% - 19px*2);
   }
 }
+  
