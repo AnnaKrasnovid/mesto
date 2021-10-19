@@ -1,22 +1,42 @@
-const popup = document.querySelector('.popup'); //форма попап
-const popupCloseButton = document.querySelector('.popup__close');//кнопка закрыть
-const editbutton = document.querySelector('.profile__edit-button');//кнопка редактировать карандаш
-const form = document.querySelector('.popup__form');//форма с полями
-const profileName = document.querySelector('.profile__name');//имя профиля
-const profileAbout = document.querySelector('.profile__about');// о себе в профиле
-const popupInputName = document.querySelector('.popup__input_info_name');//инпут имя
-const popupInputAbout = document.querySelector('.popup__input_info_about');//инпут о себе
-//новое:
-const popupEdit = document.querySelector('.popup_type_edit');//попап редактировать имя, о себе
-const popupAdd = document.querySelector('.popup_type_add');//попап добавить карточку
-const addButton = document.querySelector('.profile__add-button');//кнопка добавить +
-const popupInputTitle = document.querySelector('.popup__input_info_title');
-const popupInputLink = document.querySelector('.popup__input_info_link');
-const elementTitle = document.querySelector('.element__title');
+const popup = document.querySelector('.popup'); 
+
+const editbutton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
+
+const formEdit = document.querySelector('.popup__form-edit');
+const formAdd = document.querySelector('.popup__form-add');
+
+const profileName = document.querySelector('.profile__name');
+const profileAbout = document.querySelector('.profile__about');
+
+
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupAdd = document.querySelector('.popup_type_add');
+
 const popupEditClose = document.querySelector('.popup__close-edit');
 const popupAddClose = document.querySelector('.popup__close-add');
-//const formEdit = document.querySelector('popup__form-edit');
-const formAdd = document.querySelector('popup__form-add');
+
+const popupInputName = document.querySelector('.popup__input_info_name');
+const popupInputAbout = document.querySelector('.popup__input_info_about');
+const popupInputTitle = document.querySelector('.popup__input_info_title');
+const popupInputLink = document.querySelector('.popup__input_info_link');
+
+const template = document.querySelector('.template').content;
+const elementCard = document.querySelector('.elements');
+
+
+
+
+const figcaptionPhoto = document.querySelector('.popup-photo__figcaption');
+const titleElement = document.querySelector('.element__title');
+
+const popupPhotoClose = document.querySelector('.popup-photo__close');
+const popupPhoto = document.querySelector('.popup-photo');
+const elementPhoto = document.querySelector('.element__photo');
+const photoBig = document.querySelector('.popup-photo__img');
+
+
+
 
 const initialCards = [
     {
@@ -43,91 +63,90 @@ const initialCards = [
       name: 'Байкал',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-  ]; 
-  
-
+  ];
 
 //Функция открытия попапа
 function openPopup(popup) {
-    popup.classList.add('popup_opened');
-}//при открытии попапа добавляется класс
+  popup.classList.add('popup_opened');
+}
 
 //Функция закрытия попапа
-function closePopup() {
-    popup.classList.remove('popup_opened');
-}//при закрытии формы класс удаляется
-
-
-
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
 
 //Функция записи полей импута такое же как и в полях name и about
 function  inputNameForm() {
-    openPopup(popupEdit);//добавила аргумент
-    popupInputName.value = profileName.textContent;
-    popupInputAbout.value = profileAbout.textContent;
+  openPopup(popupEdit);
+  popupInputName.value = profileName.textContent;
+  popupInputAbout.value = profileAbout.textContent;
 }
 
-//Функция сохранения формы 
-function submitForm(event) {
-    event.preventDefault();//отменяем стандартное действие, страница не перезагрузиться при нажатии кнопки
-    profileName.textContent = popupInputName.value;
-    profileAbout.textContent = popupInputAbout.value;
-    closePopup();
+//Функция сохранения формы Edit
+function submitFormEdit(event) {
+  event.preventDefault();
+  profileName.textContent = popupInputName.value;
+  profileAbout.textContent = popupInputAbout.value;
+  closePopup(popupEdit);
 }
 
-
-
-
-
-//Функция записи полей импута такое же как и в полях title и link
-function inputTitleForm() {
-    openPopup(popupAdd);
-    popupInputTitle.value = elementTitle.textContent;
-       //добавить ссылку в поле импут
-}
-
-
-//Функция coхранения создания новой карточки
-function submitFormAdd(event) {
-    event.preventDefault();
-
-    closePopup();//не работает
-}
-
-popupCloseButton.addEventListener('click', closePopup);
-editbutton.addEventListener('click', inputNameForm);
-form.addEventListener('submit', submitForm);
-
-//новое:
-addButton.addEventListener('click', inputTitleForm);
-
-
-const template = document.querySelector('.template').content; //получаем доступ к тегу template
-const elementCard = document.querySelector('.elements');//добавили список ul для карточек из html в DOM
-
-/*
-//Функция которая клонирует карточку element и добавляет name и link из массива initialCards
-function renderElement(item) {
-    const element = template.querySelector('.element').cloneNode(true);  //из тега template получаем карточку и клонируем
-    element.querySelector('.element__title').textContent = item.name;   //текст заголовка карточки=значению name из объекта массива initialCards
-    element.querySelector('.element__photo').src = item.link;   //ссылка = значению link из объекта массива initialCards
-    elementCard.prepend(element);   //в список ul добавляем в начало элементы   
-}
-
-initialCards.forEach(renderElement);//перебираем все элементы массива и на каждом элементе массива применяем функцию()*/
-
-//Функция создания новой карточки
+//Функция создания клона карточки
 function createCard(item) {
-    const element = template.querySelector('.element').cloneNode(true);  //из тега template получаем карточку и клонируем
-    element.querySelector('.element__title').textContent = item.name;   //текст заголовка карточки=значению name из объекта массива initialCards
-    element.querySelector('.element__photo').src = item.link;
-    return element;
+  const element = template.querySelector('.element').cloneNode(true);  
+  element.querySelector('.element__title').textContent = item.name;
+  element.querySelector('.element__photo').src = item.link;
+  element.querySelector('.element__like').addEventListener('click', function(event) {
+    event.target.classList.toggle('element__like_active');//лайк
+  })
+  element.querySelector('.element__delete-button').addEventListener('click', function(event) {
+    event.target.closest('.element').remove();//удаление карточки
+  })
+  return element;
 }
 
-//Функция добавления новой карточки 
+//Функция добавления новой карточки в DOM
 function prependCard(item) {
-    const element = createCard(item);
-    elementCard.prepend(element);
+  const element = createCard(item);
+  elementCard.prepend(element);
 }
 
-initialCards.forEach(prependCard);
+initialCards.forEach(prependCard);//для массива применяем метод forEach и добавляем карточки в дом
+
+function submitFormAdd(event) {
+  event.preventDefault();
+  const name = popupInputTitle.value;
+  const link = popupInputLink.value;
+  const item = {
+    name: name,
+    link: link
+  }
+  prependCard(item);
+  event.target.reset();
+  closePopup(popupAdd);
+}
+
+editbutton.addEventListener('click', inputNameForm);
+formEdit.addEventListener('submit', submitFormEdit);
+formAdd.addEventListener('submit', submitFormAdd);
+addButton.addEventListener('click', function() {
+    openPopup(popupAdd);
+});
+popupEditClose.addEventListener('click', function() {
+    closePopup(popupEdit)
+});
+popupAddClose.addEventListener('click', function() {
+    closePopup(popupAdd)
+});
+
+popupPhotoClose.addEventListener('click', function() {
+  closePopup(popupPhoto)
+});
+
+
+
+elementPhoto.addEventListener('click', function() {
+  openPopup(popupPhoto)
+})
+
+
+
