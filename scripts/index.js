@@ -9,7 +9,6 @@ const formAdd = document.querySelector('.popup__form-add');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
-
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 
@@ -24,19 +23,10 @@ const popupInputLink = document.querySelector('.popup__input_info_link');
 const template = document.querySelector('.template').content;
 const elementCard = document.querySelector('.elements');
 
-
-
-
 const figcaptionPhoto = document.querySelector('.popup-photo__figcaption');
-const titleElement = document.querySelector('.element__title');
-
 const popupPhotoClose = document.querySelector('.popup-photo__close');
 const popupPhoto = document.querySelector('.popup-photo');
-const elementPhoto = document.querySelector('.element__photo');
-const photoBig = document.querySelector('.popup-photo__img');
-
-
-
+const popupPhotoImg = document.querySelector('.popup-photo__img');
 
 const initialCards = [
     {
@@ -95,11 +85,21 @@ function createCard(item) {
   const element = template.querySelector('.element').cloneNode(true);  
   element.querySelector('.element__title').textContent = item.name;
   element.querySelector('.element__photo').src = item.link;
+  element.querySelector('.element__photo').setAttribute('alt', item.name);
+
   element.querySelector('.element__like').addEventListener('click', function(event) {
     event.target.classList.toggle('element__like_active');//лайк
   })
+
   element.querySelector('.element__delete-button').addEventListener('click', function(event) {
     event.target.closest('.element').remove();//удаление карточки
+  })
+
+  element.querySelector('.element__photo').addEventListener('click', function() {
+    popupPhotoImg.src = item.link;
+    figcaptionPhoto.textContent = item.name;
+    popupPhotoImg.setAttribute('alt', item.name);
+    openPopup(popupPhoto)//popup-photo
   })
   return element;
 }
@@ -110,7 +110,8 @@ function prependCard(item) {
   elementCard.prepend(element);
 }
 
-initialCards.forEach(prependCard);//для массива применяем метод forEach и добавляем карточки в дом
+//для массива применяем метод forEach и добавляем карточки в дом
+initialCards.forEach(prependCard);
 
 function submitFormAdd(event) {
   event.preventDefault();
@@ -137,16 +138,10 @@ popupEditClose.addEventListener('click', function() {
 popupAddClose.addEventListener('click', function() {
     closePopup(popupAdd)
 });
-
 popupPhotoClose.addEventListener('click', function() {
   closePopup(popupPhoto)
 });
 
-
-
-elementPhoto.addEventListener('click', function() {
-  openPopup(popupPhoto)
-})
 
 
 
