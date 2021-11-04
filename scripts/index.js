@@ -58,11 +58,13 @@ const closePopupList = Array.from(document.querySelectorAll('.popup'));
 //Функция открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscape);
 }
 
 //Функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEscape);
 }
 
 //Функция записи полей импута такое же как и в полях name и about
@@ -115,7 +117,8 @@ function submitFormAdd(event) {
     link: link
   }
   prependCard(item);
-  event.target.reset();
+  event.target.reset(); 
+  setSubmitButtonType(formAdd, config);
   closePopup(popupAdd);
 }
 
@@ -144,9 +147,8 @@ initialCards.forEach(prependCard);
 
 //Функция закрытия попапа нажатием на overlay
 function closePopupOverlays(event) {
-  const openPopup = document.querySelector('.popup_opened');  
   if (event.target.classList.contains('popup') === true)
-    closePopup(openPopup);
+    closePopup(event.target);
  }
 
 //Перебираем массив попапов и каждому добавляем слушатель
@@ -156,13 +158,13 @@ closePopupList.forEach((popup) => {
 
 //Функция закрытия попапа Escape
 function closePopupEscape(event){
-  const openPopup = document.querySelector('.popup_opened')
   if (event.key === "Escape") {
+    const openPopup = document.querySelector('.popup_opened')
     closePopup(openPopup)
   }
 }
 
-document.addEventListener('keydown', closePopupEscape);
+
 editbutton.addEventListener('click', inputNameForm);
 formEdit.addEventListener('submit', submitFormEdit);
 formAdd.addEventListener('submit', submitFormAdd);

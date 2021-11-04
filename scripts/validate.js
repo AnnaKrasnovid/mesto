@@ -29,7 +29,6 @@ function setFormListeners(form, config) {
 //проверка кнопки
 function setSubmitButtonType(form, config){
   const button = form.querySelector(config.submitButtonSelector);
-
   button.disabled = !form.checkValidity();
   button.classList.toggle(config.inactiveButtonClass, !form.checkValidity())
 }
@@ -61,6 +60,5 @@ function hideInputError(input, form, config) {
   input.classList.remove(config.inputErrorClass);
   errorElement.textContent = '';
 }
-
 
 enableValidation(config);
