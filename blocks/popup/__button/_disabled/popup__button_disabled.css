@@ -3,6 +3,7 @@
   border: 1px solid #000000;
   background-color: #ffffff;
   color: #000;
+  cursor: default;
 }
 
 .popup__button_disabled:hover {

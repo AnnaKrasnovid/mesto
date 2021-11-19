@@ -7,12 +7,6 @@
   max-width: 880px;
 }
 
-@media screen and (max-width: 1023px) {
-  .profile {
-    grid-template-columns: 120px 1fr 100px;
-  }
-}
-
 @media screen and (max-width: 767px) {
   .profile {
     grid-template-columns: 1fr;
