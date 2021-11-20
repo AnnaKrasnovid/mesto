@@ -1,3 +1,5 @@
+const popupPhoto = document.querySelector('.popup-photo');
+
 export class Card {
   constructor(data, cardSelector, openPopup){
     this._name = data.name;
@@ -24,11 +26,10 @@ export class Card {
     event.target.closest('.element').remove();
   }
 
-  _openPopupPhoto() {    
-    const popupPhoto = document.querySelector('.popup-photo');
+  _openPopupPhoto() {
     popupPhoto.querySelector('.popup-photo__img').src = this._link;
     popupPhoto.querySelector('.popup-photo__figcaption').textContent = this._name;
-    popupPhoto.querySelector('.popup-photo__figcaption').alt = this._name;
+    popupPhoto.querySelector('.popup-photo__img').alt = this._name;
     this._openPopup(popupPhoto);
   }
 
@@ -42,6 +43,7 @@ export class Card {
     this._element = this._getTemplate();
     this._element.querySelector('.element__photo').src = this._link;
     this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__photo').alt = this._name;
     this._setEventListeners();
 
     return this._element;

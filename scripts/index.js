@@ -1,5 +1,5 @@
 import {FormValidator} from './FormValidator.js';
-import {Card} from './card.js';
+import {Card} from './Сard.js';
 
 const initialCards = [
   {
@@ -28,36 +28,36 @@ const initialCards = [
   }
 ];
 
-const popupEdit = document.querySelector('.popup_type_edit');
-const editbutton = document.querySelector('.profile__edit-button');
+const formEdit = document.querySelector('.popup__form-edit');
+const formAdd = document.querySelector('.popup__form-add');
 
 const popupInputName = document.querySelector('.popup__input_info_name');
 const popupInputAbout = document.querySelector('.popup__input_info_about');
+
+const popupInputTitle = document.querySelector('.popup__input_info_title');
+const popupInputLink = document.querySelector('.popup__input_info_link');
 
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
 const popupEditClose = document.querySelector('.popup__close-edit');
 const popupAddClose = document.querySelector('.popup__close-add');
-
-const formEdit = document.querySelector('.popup__form-edit');
-const addButton = document.querySelector('.profile__add-button');
-
-const formAdd = document.querySelector('.popup__form-add');
-const popupAdd = document.querySelector('.popup_type_add');
-const elementCard = document.querySelector('.elements');
-
-const popupInputTitle = document.querySelector('.popup__input_info_title');
-const popupInputLink = document.querySelector('.popup__input_info_link');
-
-const closePopupList = Array.from(document.querySelectorAll('.popup'));
-//const popupPhoto = document.querySelector('.popup-photo');
 const popupPhotoClose = document.querySelector('.popup-photo__close');
 
+const editbutton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
+
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupAdd = document.querySelector('.popup_type_add');
+
+const elementCard = document.querySelector('.elements');
+
+const closePopupList = Array.from(document.querySelectorAll('.popup'));
+const popupPhoto = document.querySelector('.popup-photo');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEscape);
+  document.addEventListener('keydown', closePopupEscape);  
 }
 
 function closePopup(popup) {
@@ -67,7 +67,7 @@ function closePopup(popup) {
 
 //Функция закрытия попапа нажатием на overlay
 function closePopupOverlays(event) {
-  if (event.target.classList.contains('popup') === true)
+  if (event.target.classList.contains('popup'))
     closePopup(event.target);
 }
 
@@ -81,6 +81,7 @@ function closePopupEscape(event){
 function  inputNameForm() {
   popupInputName.value = profileName.textContent;
   popupInputAbout.value = profileAbout.textContent;
+  formValidatorEdit.resetValidation();
   openPopup(popupEdit);
 }
 
@@ -102,14 +103,15 @@ function submitFormAdd(event) {
   }
 
   createCard(item);
-  event.target.reset();  
+  event.target.reset();
   closePopup(popupAdd);
 }
 
-//для массива применяем метод forEach и добавляем карточки в дом
-initialCards.forEach(item => {
-  createCard(item);
-});
+function resetInputFormAdd() {
+  openPopup(popupAdd);
+  formValidatorAdd.resetValidation();
+  formAdd.reset();
+}
 
 //Перебираем массив попапов и каждому добавляем слушатель
 closePopupList.forEach((popup) => {
@@ -119,18 +121,25 @@ closePopupList.forEach((popup) => {
 formAdd.addEventListener('submit', submitFormAdd);
 formEdit.addEventListener('submit', submitFormEdit);
 editbutton.addEventListener('click', inputNameForm);
-addButton.addEventListener('click', () => openPopup(popupAdd));
+addButton.addEventListener('click', resetInputFormAdd);
 popupAddClose.addEventListener('click', () => closePopup(popupAdd));
-popupPhotoClose.addEventListener('click', () =>closePopup(popupPhoto));
+popupPhotoClose.addEventListener('click', () => closePopup(popupPhoto));
 popupEditClose.addEventListener('click', () => closePopup(popupEdit));
 
+//для массива применяем метод forEach и добавляем карточки в дом
+initialCards.forEach(item => {
+  createCard(item);
+});
 
 function createCard(item) {
-  const card = new Card(item, '.template', openPopup);
-  const cardElement = card.generateCard();
- 
-  elementCard.prepend(cardElement);
+  elementCard.prepend(getCard(item))
 }
+
+function getCard(item) {
+  const card = new Card(item, '.template', openPopup);
+  const cardElement = card.generateCard(); 
+  return cardElement;
+} 
 
 const config = {
   formSelector: '.popup__form',
@@ -140,10 +149,10 @@ const config = {
   inactiveButtonClass: 'popup__button_disabled',
 }
 
-const forms = Array.from(document.querySelectorAll(config.formSelector));
-  forms.forEach((form) => {
-    const formValidator = new FormValidator(config, form);
-    formValidator.enableValidation();
-});
+const formValidatorAdd = new FormValidator(config, formAdd);
+formValidatorAdd.enableValidation();
+const formValidatorEdit = new FormValidator(config, formEdit);
+formValidatorEdit.enableValidation();
+
 
 

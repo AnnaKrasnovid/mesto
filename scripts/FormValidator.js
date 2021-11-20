@@ -5,14 +5,14 @@ export class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
+    this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
   }
 
   enableValidation() {
     this._form.addEventListener('submit', (event) => this._handleSubmit(event));
     this._form.addEventListener('input', () => this._setSubmitButtonType());
   
-    const inputs = Array.from(this._form.querySelectorAll(this._inputSelector));  
-    inputs.forEach(inputElement => {
+    this._inputs.forEach(inputElement => {
       inputElement.addEventListener('input', () => this._handleFieldValidation(inputElement))
     })
     
@@ -23,9 +23,9 @@ export class FormValidator {
   _setSubmitButtonType() {
     const button = this._form.querySelector(this._submitButtonSelector);
     button.disabled = !this._form.checkValidity();
-    button.classList.toggle(this._inactiveButtonClass, !this._form.checkValidity())  
+    button.classList.toggle(this._inactiveButtonClass, !this._form.checkValidity());
   }
-  
+
   //Функция остановки 
   _handleSubmit(event) {
     event.preventDefault()
@@ -52,6 +52,13 @@ export class FormValidator {
     const errorElement = this._form.querySelector(`#${input.id}-error`);
     input.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
+  }
+
+  resetValidation() {
+    this._setSubmitButtonType();
+    this._inputs.forEach((input) => {
+    this._hideInputError(input);
+    });
   }
 }
 
