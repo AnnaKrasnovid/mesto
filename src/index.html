@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
-    <link rel="stylesheet" href="./styles/index.css">
+    <title>Mesto</title>  
+    <!--<link rel="stylesheet" href="../src/pages/index.css">-->
 </head>
 <body class="root">
   <div class="page">
     <!--Блок header-->
     <header class="header">
-      <img class="logo" src="./image/LogoVector.svg" alt="Логотип">
+      <img class="logo" src="<%=require('./image/LogoVector.svg')%>" alt="Логотип">
     </header>
     <main class="content">
       <!--Блок profile-->
       <section class="profile">
-       <img class="profile__avatar" src="./image/image.jpg" alt="Фотография владельца профиля">
+       <img class="profile__avatar" src="<%=require('./image/image.jpg')%>" alt="Фотография владельца профиля">
         <div class="profile__info">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -114,7 +114,7 @@
   <!--Заготовка карточки публикации element-->
   <template class="template">
     <li class="element">
-      <img class="element__photo">
+      <img class="element__photo" src="#" alt="Фотография публикации">
       <button class="element__delete-button hover-button" type="button"></button>
       <div class="element__container">
         <h2 class="element__title"></h2>
@@ -122,6 +122,6 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
+  <!--<script type="module" src="../src/pages/index.js"></script>-->
 </body>
 </html>
