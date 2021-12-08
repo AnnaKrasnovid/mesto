@@ -6,6 +6,7 @@ export class FormValidator {
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
+    this._button = this._form.querySelector(this._submitButtonSelector);
   }
 
   enableValidation() {
@@ -21,9 +22,8 @@ export class FormValidator {
 
   //Проверка кнопки
   _setSubmitButtonType() {
-    const button = this._form.querySelector(this._submitButtonSelector);
-    button.disabled = !this._form.checkValidity();
-    button.classList.toggle(this._inactiveButtonClass, !this._form.checkValidity());
+    this._button.disabled = !this._form.checkValidity();
+    this._button.classList.toggle(this._inactiveButtonClass, !this._form.checkValidity());
   }
 
   //Функция остановки 
