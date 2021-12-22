@@ -21,7 +21,7 @@ export class Popup {
   }   
     
   _handleOverlaysClose(event) {
-    if (event.target.classList.contains('popup'))
+    if(event.target.classList.contains('popup'))
     this.close();
   }
 
