@@ -18,7 +18,7 @@ export class Api {
     .then(this._responseStatus)
   }
 
-  setProfileData(data) {
+  setProfileInfo(data) {
     return fetch (`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,    
@@ -65,6 +65,14 @@ export class Api {
     return fetch (`${this._baseUrl}/cards/${data._id}/likes`, {
       method: 'DELETE',
       headers: this._headers,
+    })
+    .then(this._responseStatus)
+  }
+
+  removeCard(data) {
+    return fetch (`${this._baseUrl}/cards/${data._id}`, {
+      method: 'DELETE',
+      headers: this._headers
     })
     .then(this._responseStatus)
   }
