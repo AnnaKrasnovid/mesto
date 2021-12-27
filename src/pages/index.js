@@ -29,7 +29,7 @@ import {
   config
 } from '../utils/constants.js'
 
-let userId = null;
+let userId;
 
 const formValidatorAdd = new FormValidator(config, formAdd);
 formValidatorAdd.enableValidation();
