@@ -60,24 +60,16 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
-//карточки с сервера
-api.getInitialCards()
-.then((res) => {
-  sectionCard.renderItems(res);
-  console.log(res)
-})
-.catch(err => {console.log(err)});
 
-//инфо о пользователе с сервера
-api.getProfileInfo()
-.then((res) => {  
-  userInfoProfile.setUserInfo(res) 
-  userInfoProfile.setAvatar(res)
-  userId = res._id;
-  //console.log(res)  
-  //console.log(userId)
-})
-.catch(err => {console.log(err)})
+Promise.all([api.getProfileInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfoProfile.setUserInfo(userData) 
+    userInfoProfile.setAvatar(userData)
+    userId = userData._id;
+
+    sectionCard.renderItems(cards);
+  })
+  .catch(err => {console.log(err)})
 
 function handleCardClick (name, link) {
   popupImage.open(name, link)
@@ -191,3 +183,5 @@ popupWithFormAdd.setEventListeners();
 popupWithFormEdit.setEventListeners();
 popupWithFormProfileUpdate.setEventListeners();
 popupWithConfirm.setEventListeners();
+
+
