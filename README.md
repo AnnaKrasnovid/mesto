@@ -1,5 +1,6 @@
 # Проектная работа "Mesto" 
 Написана в рамках обучения на курсе веб-разработчик [Яндекс-практикума](https://practicum.yandex.ru/profile/web/), 4-9 спринт.
+#### [Посмотреть проект "Место" в браузере](https://annakrasnovid.github.io/mesto/) 
 
 ## Описание:
 **Mesto** -это  интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.  
@@ -32,4 +33,3 @@
 * [6 спринт](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6)
 * [6 спринт](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript.-Sprint-9)
 
-## Посмотреть проект можно по ссылке: [Mesto](https://annakrasnovid.github.io/mesto/) 
