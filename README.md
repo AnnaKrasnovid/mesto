@@ -29,7 +29,9 @@
 
 ## Инструкция по установке:
 Клонируем репозиторий:  
-```git clone https://github.com/AnnaKrasnovid/mesto```  
+```
+git clone https://github.com/AnnaKrasnovid/mesto
+```  
 Переходим в папку проекта:  
 ```cd mesto```  
 Устанавливаем пакет зависимостей и webpack:  
