@@ -28,14 +28,22 @@
 * Webpack
 
 ## Инструкция по установке:
-Клонируем репозиторий:
-```git clone https://github.com/AnnaKrasnovid/mesto```
-Переходим в папку проекта:
-```cd mesto```
-Устанавливаем пакет зависимостей и webpack:
-```npm i webpack --save-dev```
-Запускаем проект на локальном сервере:
-```npm run dev```
+Клонируем репозиторий:  
+```
+git clone https://github.com/AnnaKrasnovid/mesto
+```  
+Переходим в папку проекта:  
+```
+cd mesto
+```  
+Устанавливаем пакет зависимостей и webpack:  
+```
+npm i webpack --save-dev
+```  
+Запускаем проект на локальном сервере:  
+```
+npm run dev
+```  
 
 ## Ссылки на макеты в Figma:
 * [4 спринт](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
