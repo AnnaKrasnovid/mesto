@@ -1,5 +1,5 @@
 # Проектная работа "Mesto" 
-Написана в рамках обучения на курсе веб-разработчик [Яндекс-практикума](https://practicum.yandex.ru/profile/web/), 4-9 спринт.
+Написана в рамках обучения на курсе веб-разработчик [Яндекс-практикума](https://practicum.yandex.ru/profile/web/), 4-9 спринты.
 #### [Посмотреть проект "Место" в браузере](https://annakrasnovid.github.io/mesto/) 
 
 ## Описание:
@@ -26,6 +26,16 @@
 * Файловая структура по методологии БЭМ, Nested.
 * Медиазапросы
 * Webpack
+
+## Инструкция по установке:
+Клонируем репозиторий:
+```git clone https://github.com/AnnaKrasnovid/mesto```
+Переходим в папку проекта:
+```cd mesto```
+Устанавливаем пакет зависимостей и webpack:
+```npm i webpack --save-dev```
+Запускаем проект на локальном сервере:
+```npm run dev```
 
 ## Ссылки на макеты в Figma:
 * [4 спринт](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
